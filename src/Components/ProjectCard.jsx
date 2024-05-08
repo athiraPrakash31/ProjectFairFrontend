@@ -7,7 +7,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { BsGithub } from "react-icons/bs";
 import { FaLink } from "react-icons/fa6";
-function ProjectCard() {
+import { serverURL } from '../Services/serverURL';
+function ProjectCard({project}) {
+  
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -15,9 +17,9 @@ function ProjectCard() {
   return (
     <div>
        <Card style={{ width: '22rem' }} onClick={handleShow}>
-      <Card.Img variant="top" src={Coder} width={'100%'} height={'300px'} />
+      <Card.Img variant="top" src={project?`${serverURL}/uploads/${project.projectImage}`:{Coder}} width={'100%'} height={'300px'} />
       <Card.Body>
-        <Card.Title className='text-center'>Project Title</Card.Title>
+        <Card.Title className='text-center'>{project.title}</Card.Title>
       </Card.Body>
     </Card>
 
@@ -38,9 +40,9 @@ function ProjectCard() {
               <img src={Coder} alt="" width={'100%'} />
             </div>
             <div className="col-6 text-center">
-              <h2>Project Title</h2>
-              <p style={{textAlign:'justify'}}>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis expedita ab itaque perferendis velit neque at nostrum earum doloremque, architecto ex. Eum dignissimos, modi non saepe pariatur delectus culpa rem.</p>
-              <p>Technology Used : <b>React, Node</b></p>
+              <h2>{project.title}</h2>
+              <p style={{textAlign:'justify'}}>Overview: {project.overview}</p>
+              <p>Technology Used : <b>{project.language}</b></p>
             </div>
           </div>
         </Modal.Body>
@@ -49,10 +51,10 @@ function ProjectCard() {
           <Nav variant="underline" >
      
       <Nav.Item>
-        <Nav.Link eventKey="link-1"><BsGithub size='25px' /></Nav.Link>
+      <a href={project.github}><BsGithub size='25px' /></a>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2"><FaLink size='25px'/></Nav.Link>
+      <a href={project.livelink}><FaLink size='25px'/></a>
       </Nav.Item>
     </Nav>
 

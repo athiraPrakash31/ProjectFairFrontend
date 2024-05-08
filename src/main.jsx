@@ -5,10 +5,14 @@ import './index.css'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 import './bootstrap.min.css'
 import { BrowserRouter } from 'react-router-dom'
+import ContextShare from './ContextAPI/ContextShare.jsx'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ContextShare>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ContextShare>
   </React.StrictMode>,
 )
